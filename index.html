@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Skin Liquidity Without the Downsides: A Valorant Product Proposal by Vishal V</title>
+<meta name="description" content="A PM case study on giving Valorant players liquidity, value recovery, and better discovery while respecting the four documented reasons Riot refuses open skin trading." />
+<meta property="og:title" content="Skin Liquidity Without the Downsides: Valorant PM Case Study" />
+<meta property="og:description" content="Capture most of the player value while carrying none of the four risks Riot cites against open trading. A product proposal by Vishal V." />
+<meta property="og:type" content="article" />
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://api.fontshare.com/v2/css?f[]=zodiak@400,401,500,700&f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%230d0f13'/%3E%3Cpath d='M16 6l8 5v10l-8 5-8-5V11z' fill='none' stroke='%23ff4655' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='3' fill='%23ff4655'/%3E%3C/svg%3E" />
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="header" id="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="#top" aria-label="Vault case study home">
+      <svg class="logo" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <path d="M16 3.2 27 9.2v13.6L16 28.8 5 22.8V9.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+        <circle cx="16" cy="16" r="4.4" stroke="currentColor" stroke-width="1.8"/>
+        <path d="M16 11.6v-3M16 23.4v-3M11.6 16h-3M23.4 16h-3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+      <span>
+        <span class="brand-name">Vault</span><br/>
+        <span class="brand-sub">Valorant Skin Economy</span>
+      </span>
+    </a>
+    <div class="header-actions">
+      <img class="v-logo" src="assets/brand/valorant_logo_red.svg" alt="Valorant" width="29" height="20" />
+      <span class="header-note">Fan concept · Vishal V</span>
+    </div>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<main id="top">
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="hero-kicker"><img class="hero-vlogo" src="assets/brand/valorant_logo_red.svg" alt="Valorant" width="23" height="16" />Valorant · Cosmetic Economy · Fan concept</span>
+        <h1>Skin Liquidity <em>Without</em> the Downsides</h1>
+        <p class="hero-sub">A product proposal for giving Valorant players liquidity, value recovery, and better discovery while respecting the four reasons Riot refuses open skin trading.</p>
+        <div class="byline">
+          <span class="avatar">V</span>
+          <span>
+            <span class="byline-name">Vishal V</span><br/>
+            <span class="byline-role">PM Case Study · 2026</span>
+          </span>
+        </div>
+        <dl class="hero-meta">
+          <div><dt>Discipline</dt><dd>Product Strategy &amp; PRD</dd></div>
+          <div><dt>Surface</dt><dd>In-client economy</dd></div>
+          <div><dt>Read</dt><dd>~8 minutes</dd></div>
+        </dl>
+      </div>
+      <figure class="hero-figure">
+        <div class="hero-skin-stage">
+          <span class="hud-chip red"><span class="dot"></span>Reaver Vandal</span>
+          <img class="hero-skin" src="assets/skins/reaver_vandal.png" alt="Reaver Vandal weapon skin render" loading="eager" />
+          <div class="hero-stage-meta"><span>VP 1775</span><span>Owned skin</span></div>
+        </div>
+        <figcaption>The closed loop: value stays inside Riot's economy, with no cash-out and no aftermarket.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+<div class="layout">
+
+  <!-- ===== SIDE TOC ===== -->
+  <nav class="toc" aria-label="Section navigation">
+    <p class="toc-label">Contents</p>
+    <ol>
+      <li><a href="#tldr"><span class="n">00</span>Executive summary</a></li>
+      <li><a href="#problem"><span class="n">01</span>Problem statement</a></li>
+      <li><a href="#personas"><span class="n">02</span>Users &amp; personas</a></li>
+      <li><a href="#metrics"><span class="n">03</span>Success metrics</a></li>
+      <li><a href="#prd"><span class="n">04</span>Solution &amp; PRD</a></li>
+      <li><a href="#economics"><span class="n">05</span>Unit economics</a></li>
+      <li><a href="#wireframes"><span class="n">06</span>Wireframes</a></li>
+      <li><a href="#rollout"><span class="n">07</span>Phased rollout</a></li>
+      <li><a href="#risks"><span class="n">08</span>Risks &amp; mitigations</a></li>
+      <li><a href="#open"><span class="n">09</span>Open questions</a></li>
+    </ol>
+  </nav>
+
+  <!-- ===== CONTENT ===== -->
+  <article class="article">
+
+    <!-- 00 TL;DR -->
+    <section class="section-pad reveal" id="tldr">
+      <div class="tldr">
+        <span class="eyebrow">00 · Executive summary</span>
+        <p class="thesis">Players want to do more with the skins they own. The obvious fix, open CS-style trading, is one Riot has <strong>deliberately rejected</strong>. The goal is therefore reframed: <strong>capture most of the player value while carrying none of the four risks.</strong></p>
+        <aside class="marginalia"><span class="mk">note to self</span>The whole trick is the reframe. Keep the upside and drop the four risks.</aside>
+        <div class="tldr-cols">
+          <p>Players want to recover value from unused purchases and reliably find skins worth buying. Open player-to-player trading breeds speculation and gambling, fuels scams and account theft, and cannibalizes direct-sale revenue. Those four risks are why Riot said no.</p>
+          <p>The proposal is a <strong>Riot-operated, <span class="underline-hand">closed-loop</span> Skin Vault</strong> on four constraint-respecting mechanics. <strong>Buyback-to-Credit</strong> (the hero) repurchases owned skins for non-cashable credit. A <strong>Usage-Weighted Store</strong> seeds daily slots from the guns a player uses. <strong>Trial</strong> tests a skin for one match, tightly capped. <strong>Wishlist with Surprise Restock</strong> brings wanted skins back on a limited window.</p>
+        </div>
+        <div class="pill-row">
+          <span class="pill accent">No free-market pricing</span>
+          <span class="pill accent">No cash-out</span>
+          <span class="pill accent">No P2P asset transfer</span>
+          <span class="pill">Buyback-to-Credit</span>
+          <span class="pill">Usage-Weighted Store</span>
+          <span class="pill">Trial</span>
+          <span class="pill">Wishlist + Restock</span>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule"/>
+
+    <!-- 01 PROBLEM -->
+    <section class="section-pad reveal" id="problem">
+      <span class="eyebrow">01 · Problem statement</span>
+      <h2 class="sec-title">Players ask for trading, but trading is a solution, not the pain.</h2>
+      <div class="prose">
+        <aside class="marginalia gutter"><span class="mk">in the margin</span>Trading is the workaround players reach for, not the pain itself.</aside>
+        <p class="lead">When players say they want to trade, they describe a workaround. The real pains sit beneath it, and each can be solved without opening a market.</p>
+
+        <ul class="pain-list">
+          <li><span class="tag">Primary</span><span><b>Wasted spend and dead value.</b> "I have bought skins I no longer use, for agents I dropped or weapons I don't run. That money feels dead, and I cannot recover any value from it."</span></li>
+          <li><span class="tag">Discovery</span><span><b>The store rarely shows what I want.</b> "The daily rotation is random. Skins for the guns I actually play, or the one I have been eyeing, almost never appear, so I lose interest and never buy."</span></li>
+          <li><span class="tag">Confidence</span><span><b>No way to try before buying.</b> "A knife or Vandal is expensive. I cannot tell if it feels right in-game until after I have paid, so I hesitate."</span></li>
+        </ul>
+
+        <div class="pm-statement">
+          <p><strong>Invested Valorant players</strong> struggle to recover value from skins they own and to reliably find skins worth buying, because <strong>Riot's economy is strictly one-way</strong> and the store rotation is random. This drives buyer's remorse and lower future spend, and value leaks to gray-market account sales. It matters because <strong>skin revenue is Valorant's core monetization engine</strong>. The timing fits: the game is mature, players hold large aging inventories, and Riot already shipped a closed-loop feature in gifting (Patch 10.08).</p>
+        </div>
+
+        <!-- REAL STORE SCREENSHOT REFERENCE -->
+        <figure class="store-ref bleed">
+          <div class="sr-chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="t">The store today · in-client capture</span></div>
+          <div class="sr-imgwrap">
+            <img src="assets/ui/store_screen.png" alt="Valorant in-client store showing the Champions 2023 featured bundle with a countdown and four random daily offer slots, annotated to show no value recovery" loading="lazy" />
+          </div>
+          <figcaption>In-client Valorant Store (Champions 2023 bundle featured). Discovery is four random daily offers plus a timed bundle, with no way to recover value from what a player already owns. Screenshot used for reference only; fan concept, not affiliated with Riot Games.</figcaption>
+        </figure>
+      </div>
+
+      <!-- WHY RIOT SAYS NO -->
+      <div class="ink-panel bleed" style="margin-top:var(--space-12)">
+        <span class="eyebrow">The backbone constraint</span>
+        <h3>Why Riot says no to open trading</h3>
+        <p class="ink-sub">Any proposal that ignores these four documented reasons is dead on arrival. The whole design brief is to deliver the upside <em>while structurally preventing all four of them.</em></p>
+        <div class="constraints">
+          <div class="constraint">
+            <span class="cn">Constraint 01</span>
+            <h4>Direct-purchase model</h4>
+            <p>Trading suits loot-box games that tune supply through randomized drops. Valorant has known quantities and set prices, so an aftermarket adds no design value. <cite><a href="https://www.forbes.com/sites/mikestubbs/2020/06/19/riot-games-confirms-skin-trading-will-not-be-coming-to-valorant/" target="_blank" rel="noopener">Joe Lee via Forbes, 2020</a></cite></p>
+          </div>
+          <div class="constraint">
+            <span class="cn">Constraint 02</span>
+            <h4>Speculation &amp; gambling</h4>
+            <p>Open economies spawn third-party trading sites, price gouging, and skin-betting rings, the well-documented CS:GO problem. <cite><a href="https://esportsinsider.com/cs2-skins-vs-valorant-skins" target="_blank" rel="noopener">Esports Insider</a></cite></p>
+          </div>
+          <div class="constraint">
+            <span class="cn">Constraint 03</span>
+            <h4>Account security &amp; scams</h4>
+            <p>Skin economies attract phishing, account theft, and bot-automated scam trades, all of which are direct player-safety costs. <cite><a href="https://www.thespike.gg/valorant/news/valorant-won-t-allow-skin-trading/199" target="_blank" rel="noopener">The Spike</a></cite></p>
+          </div>
+          <div class="constraint">
+            <span class="cn">Constraint 04</span>
+            <h4>Stable revenue</h4>
+            <p>No trading means every skin sale flows directly to Riot, whereas a peer-to-peer channel would cannibalize the store. <cite><a href="https://www.thespike.gg/valorant/news/valorant-won-t-allow-skin-trading/199" target="_blank" rel="noopener">The Spike</a></cite></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="prose">
+        <h3>The reframed goal</h3>
+        <p>Design a system that delivers value recovery, discovery, and liquidity <strong>while structurally preventing all four problems</strong>. Every feature below is scored against these constraints.</p>
+        <blockquote class="pullquote">Value, liquidity, and better discovery, with no market, no cash-out, and nothing that truly changes hands.<span class="by">The brief, in one line.</span></blockquote>
+      </div>
+    </section>
+
+    <hr class="rule"/>
+
+    <!-- 02 PERSONAS -->
+    <section class="section-pad reveal" id="personas">
+      <span class="eyebrow">02 · Users &amp; personas</span>
+      <h2 class="sec-title">Three players to serve, and one to design against.</h2>
+      <p class="lead measure">Each persona maps to a specific job-to-be-done and a specific mechanic. The anti-persona is the design constraint, because whatever we build must give the speculator nothing to exploit.</p>
+
+      <aside class="marginalia"><span class="mk">design against</span>If the speculator finds nothing to exploit, the design is working.</aside>
+
+      <div class="persona-grid" style="margin-top:var(--space-8)">
+        <div class="pcard">
+          <div class="pcard-head">
+            <span class="pav">R</span>
+            <div>
+              <span class="role">Primary</span>
+              <h3>The Reformed Whale</h3>
+            </div>
+          </div>
+          <p class="who">Rahul, 24, has played for 4 years and spent over ₹40k on skins. The ones he bought early are old and overused now, and he wants to move on from them, but Riot gives him no way to trade up or recover their value.</p>
+          <p class="jtbd">"When I stop using a skin, I want to recover <em>some</em> value so my past spend isn't wasted, and so I feel confident buying the next one."</p>
+          <span class="fit">Fit → Buyback-to-Credit</span>
+        </div>
+        <div class="pcard">
+          <div class="pcard-head">
+            <span class="pav">A</span>
+            <div>
+              <span class="role">Secondary</span>
+              <h3>The Frustrated Browser</h3>
+            </div>
+          </div>
+          <p class="who">Aisha, 21, is a Phantom main who checks the store often but rarely sees skins for the guns she plays, or the one skin she has wanted for months.</p>
+          <p class="jtbd">"When I open the store, I want it to surface skins I would actually buy, and to bring back the one I have been waiting for."</p>
+          <span class="fit">Fit → Usage-Weighted Store + Wishlist</span>
+        </div>
+        <div class="pcard">
+          <div class="pcard-head">
+            <span class="pav">S</span>
+            <div>
+              <span class="role">Tertiary</span>
+              <h3>Try-Before-Buy</h3>
+            </div>
+          </div>
+          <p class="who">Sam, 19, is budget-limited and wants to know whether an expensive knife or Vandal "feels right" before committing.</p>
+          <p class="jtbd">"When I am eyeing an expensive skin, I want to experience it briefly so that I buy with confidence."</p>
+          <span class="fit">Fit → Trial</span>
+        </div>
+        <div class="pcard anti">
+          <div class="pcard-head">
+            <span class="pav">✕</span>
+            <div>
+              <span class="role">Anti-persona · explicitly NOT served</span>
+              <h3>The Trader / Speculator</h3>
+            </div>
+            <span class="badge-tier">design against</span>
+          </div>
+          <p class="who">Wants price discovery, resale margin, and cash-out. Every mechanic is closed-loop by design, so this persona has nothing to exploit.</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule"/>
+
+    <!-- 03 METRICS -->
+    <section class="section-pad reveal" id="metrics">
+      <span class="eyebrow">03 · Success metrics</span>
+      <h2 class="sec-title">A North Star tied to revenue, not vanity engagement.</h2>
+      <p class="lead measure">The entire thesis is that liquidity, discovery, and confidence increase willingness to keep spending. The North Star must therefore connect to Riot's revenue engine, guarded on all sides against cannibalization.</p>
+
+      <div class="nsm-banner" style="margin-top:var(--space-8)">
+        <span class="lbl">North Star Metric</span>
+        <span class="metric">Spend Confidence, measured as Repeat Skin Purchase Rate (90-day)</span>
+        <p>The share of paying players who make a <em>subsequent</em> skin purchase within 90 days of using a Vault feature. If liquidity and discovery work, players keep buying with confidence.</p>
+      </div>
+
+      <!-- METRICS TREE -->
+      <div class="tree" role="img" aria-label="Metrics tree: North Star feeds from three input branches with leaf metrics">
+        <div class="node l0">
+          <div class="k">L0 · North Star</div>
+          <div class="v">Repeat Skin Purchase Rate, 90-day, Vault users</div>
+        </div>
+        <div class="connector"></div>
+        <div class="tree-branches">
+          <div class="branch">
+            <div class="node">
+              <div class="k">L1 Input · Value Recovery</div>
+              <div class="v">Buyback</div>
+            </div>
+            <ul class="metric-leaves">
+              <li>Buyback adoption rate</li>
+              <li>Credit reissued as % of buyback value</li>
+              <li>% credit spent within 30 days <span style="color:var(--color-teal)">(target high)</span></li>
+            </ul>
+          </div>
+          <div class="branch">
+            <div class="node">
+              <div class="k">L1 Input · Discovery</div>
+              <div class="v">Usage-Weighted Store + Wishlist</div>
+            </div>
+            <ul class="metric-leaves">
+              <li>Store click-through on personalized slots</li>
+              <li>Wishlist adds per paying user</li>
+              <li>Wishlist-to-purchase conversion on restock</li>
+            </ul>
+          </div>
+          <div class="branch">
+            <div class="node">
+              <div class="k">L1 Input · Confidence</div>
+              <div class="v">Trial</div>
+            </div>
+            <ul class="metric-leaves">
+              <li>Trial starts per paying user</li>
+              <li>Trial-to-purchase conversion of the trialed skin</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- GUARDRAILS -->
+      <div class="guardrails bleed">
+        <h3>Guardrail metrics that must not degrade</h3>
+        <div class="guard-grid">
+          <div class="guard"><div class="gm">Direct store revenue / paying user</div><div class="gr">flat or ↑ (cannibalization guard)</div></div>
+          <div class="guard"><div class="gm">Fraud / chargeback rate</div><div class="gr">≤ baseline</div></div>
+          <div class="guard"><div class="gm">Scam-related support tickets</div><div class="gr">must not rise</div></div>
+          <div class="guard"><div class="gm">Overall ARPPU</div><div class="gr">flat or ↑</div></div>
+        </div>
+      </div>
+
+      <div class="counter-note">
+        <span class="lbl">Counter-metric · the key experiment</span>
+        <p>Buyback is a win only if it lifts <em>total lifetime spend</em>, not if it merely shifts spend. This cannibalization test gates scaling. The Wishlist restock interval is tested the same way: lift conversion without training players to just wait for the next cycle.</p>
+      </div>
+    </section>
+
+    <hr class="rule"/>
+
+    <!-- 04 PRD -->
+    <section class="section-pad reveal" id="prd">
+      <span class="eyebrow">04 · Solution &amp; PRD</span>
+      <h2 class="sec-title">Vault, a Riot-operated, closed-loop economy.</h2>
+      <p class="lead measure">Four mechanics, all closed-loop. Buyback is the hero; the other three drive discovery and purchase confidence. Each is scored against Riot's four constraints, shown on the right of every card. Gifting is left out because Riot already shipped it in Patch 10.08, useful precedent that a closed-loop model works.</p>
+
+      <!-- Feature 1: HERO -->
+      <div class="feature">
+        <div class="feature-head">
+          <span class="fnum">01</span>
+          <div>
+            <h3>Buyback-to-Credit <span class="pill accent" style="vertical-align:middle">Hero</span></h3>
+          </div>
+          <p class="tagline">The liquidity engine. Riot repurchases an owned skin for non-cashable store credit, and the skin is destroyed.</p>
+        </div>
+        <div class="feature-body">
+          <div>
+            <p>Riot repurchases an <em>owned</em> skin at a <strong>fixed, Riot-set credit rate</strong> (for example, 20 to 30% of the original VP price) paid as <strong>non-cashable store credit</strong>, and the skin is <strong>destroyed</strong>. It directly answers the primary pain of dead, unrecoverable spend.</p>
+            <ul class="req-list">
+              <li>Confirmation with irreversibility warning</li>
+              <li>Limited buybacks per period (anti-abuse)</li>
+              <li>Credit funds only part of a new purchase, never the full price</li>
+            </ul>
+            <figure class="skin-frame">
+              <figcaption class="skin-meta"><span class="skin-name">Reaver Vandal</span><span class="hud-chip teal"><span class="dot"></span>+444 VP credit recovered</span></figcaption>
+              <img class="skin-render" src="assets/skins/reaver_vandal.png" alt="Reaver Vandal render, an owned skin sold back for store credit" loading="lazy" />
+            </figure>
+          </div>
+          <div class="constraint-check">
+            <div class="lbl">Riot's 4 constraints</div>
+            <div class="check-row"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span>Riot sets all prices, no market</div>
+            <div class="check-row"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span>Fixed rate means no speculation</div>
+            <div class="check-row"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span>Nothing transferable to steal</div>
+            <div class="check-row"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span>Credit recirculates in-store</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Buyback guardrails -->
+      <div class="bb-guard reveal">
+        <h3>Buyback guardrails</h3>
+        <p>Buyback is the feature most likely to leak value, so it ships wrapped in rules that keep it revenue-accretive. It recovers dead spend without becoming a return window or a way to churn recent buys.</p>
+        <ul>
+          <li><strong>Long hold before eligibility.</strong> A skin must be owned roughly 90 days before sell-back, so a purchase stays final rather than a return window.</li>
+          <li><strong>Credit covers part, not all.</strong> Buyback credit funds at most about half of any new skin, so every buyback still drives fresh cash spend.</li>
+          <li><strong>New releases and active bundles are cash-only.</strong> Credit applies only once a skin cycles out of the bundle back into normal rotation.</li>
+          <li><strong>Age-scaled rate.</strong> Genuinely old, retired skins earn a higher credit rate, rewarding clearing a locker over unwinding a recent decision.</li>
+          <li><strong>Eligibility set by testing.</strong> Scope starts narrow and expands only if the cannibalization A/B shows total lifetime spend rising.</li>
+        </ul>
+      </div>
+
+      <!-- Feature 2: Usage-Weighted Store -->
+      <div class="feature">
+        <div class="feature-head">
+          <span class="fnum">02</span>
+          <div>
+            <h3>Usage-Weighted Store</h3>
+          </div>
+          <p class="tagline">Keep discovery alive, but make one or two daily slots reflect the guns a player actually uses.</p>
+        </div>
+        <div class="feature-body">
+          <div>
+            <p>Valorant's store shows four rotating skins a day, currently at random. This seeds <strong>one or two of the four</strong> from the player's <strong>most-used weapons</strong>, refreshed every alternate day, and keeps the rest on discovery rotation. The choice is deliberate: full personalization would trap players on one gun and kill exploration, so discovery slots stay.</p>
+            <ul class="req-list">
+              <li>Slots seeded from per-player weapon-usage data</li>
+              <li>No change to Riot-set pricing</li>
+            </ul>
+            <figure class="skin-frame">
+              <figcaption class="skin-meta"><span class="skin-name">Today's daily slots</span><span class="hud-chip red"><span class="dot"></span>2 of 4 seeded</span></figcaption>
+              <div class="store-slots">
+                <div class="store-slot seeded"><img src="assets/skins/user_white_rifle.png" alt="Premium Vandal skin seeded for your most-used rifle" loading="lazy" /><span class="ss-tag">For your Vandal</span></div>
+                <div class="store-slot seeded"><img src="assets/skins/recon_phantom.png" alt="Recon Phantom skin" loading="lazy" /><span class="ss-tag">Most used</span></div>
+                <div class="store-slot"><img src="assets/skins/user_colorful_rifle.png" alt="Glitchpop-style rifle as a discovery pick" loading="lazy" /><span class="ss-tag">Discovery pick</span></div>
+              </div>
+            </figure>
+          </div>
+          <div class="constraint-check">
+            <div class="lbl">Riot's 4 constraints</div>
+            <div class="check-row"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span>Direct-purchase preserved</div>
+            <div class="check-row"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span>No market, Riot-set prices</div>
+            <div class="check-row"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span>Nothing transferable</div>
+            <div class="check-row"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span>Revenue-positive by design</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 3: Trial -->
+      <div class="feature">
+        <div class="feature-head">
+          <span class="fnum">03</span>
+          <div>
+            <h3>Trial</h3>
+          </div>
+          <p class="tagline">Try an expensive skin for real, but keep it scarce so it drives a purchase rather than replacing one.</p>
+        </div>
+        <div class="feature-body">
+          <div>
+            <p>A player can equip an expensive skin for a <strong>single match</strong>, capped at roughly <strong>two trials per month</strong>. Scarcity is the point: enough to close a hesitant purchase, but far too limited to replace buying.</p>
+            <ul class="req-list">
+              <li>Automatic expiry, no entitlement to keep</li>
+              <li>Clear "trial" tag while equipped, "Buy now" at end</li>
+            </ul>
+            <figure class="skin-frame">
+              <figcaption class="skin-meta"><span class="skin-name">Elderflame Collection</span><span class="hud-chip red"><span class="dot"></span>Trial · 1 match</span></figcaption>
+              <img class="skin-render" src="assets/skins/elderflame_collection.png" alt="Elderflame premium weapon collection available to equip on trial for one match" loading="lazy" />
+            </figure>
+          </div>
+          <div class="constraint-check">
+            <div class="lbl">Riot's 4 constraints</div>
+            <div class="check-row"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span>Nothing permanent transfers</div>
+            <div class="check-row"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span>No value moves</div>
+            <div class="check-row"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span>Expires, nothing to steal</div>
+            <div class="check-row"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span>Drives new purchases</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 4: Wishlist + Surprise Restock -->
+      <div class="feature">
+        <div class="feature-head">
+          <span class="fnum">04</span>
+          <div>
+            <h3>Wishlist + Surprise Restock</h3>
+          </div>
+          <p class="tagline">Let players save skins they want, then bring them back as a surprise with a limited buy window.</p>
+        </div>
+        <div class="feature-body">
+          <div>
+            <p>Players wishlist the skins they want. Because rotation is random, a wanted skin can vanish for months and desire decays. Vault brings it back as a <strong>surprise</strong>, with no announced date, inside a <strong>limited 48-hour buy window</strong>. The surprise plus the countdown creates urgency ("buy now or wait for the next cycle") rather than the deferrable "I will just get it tomorrow" that kills a sale. This is <em>not</em> a loot box: the player chose the exact skin, only the timing is a surprise, so there is no randomized paid chance.</p>
+            <ul class="req-list">
+              <li>Restock interval is a tuned, tested variable</li>
+            </ul>
+            <figure class="skin-frame">
+              <figcaption class="skin-meta"><span class="skin-name">Prime Phantom · wishlisted</span><span class="hud-chip teal"><span class="dot"></span>Restock · 48h left</span></figcaption>
+              <img class="skin-render" src="assets/skins/prime_phantom.png" alt="Prime Phantom skin returning on a 48-hour restock window" loading="lazy" />
+            </figure>
+          </div>
+          <div class="constraint-check">
+            <div class="lbl">Riot's 4 constraints</div>
+            <div class="check-row"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span>Direct-purchase, Riot-set price</div>
+            <div class="check-row"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span>No randomized odds, not a loot box</div>
+            <div class="check-row"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span>Nothing transferable to steal</div>
+            <div class="check-row"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span>Revenue-positive by design</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- OOS -->
+      <div class="oos">
+        <h3>Explicitly out of scope, and why</h3>
+        <p>Open P2P trading, a marketplace with player-set prices, real-money cash-out, and skin gambling or randomized cases are all excluded. Each one reintroduces one or more of the four risks, and keeping them off the table is what makes the rest of the design defensible.</p>
+      </div>
+
+      <!-- RICE -->
+      <div class="table-wrap">
+        <table class="data">
+          <caption>Prioritization, RICE (qualitative)</caption>
+          <thead>
+            <tr><th>Rank</th><th>Feature</th><th>Why this order</th><th>Ship condition</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="rank">1</span></td><td><strong>Usage-Weighted Store</strong></td><td>Low risk, no economic transfer, lifts conversion immediately.</td><td>Ship first.</td></tr>
+            <tr><td><span class="rank">2</span></td><td><strong>Wishlist + Restock</strong></td><td>High reach, captures demand the random store loses today.</td><td>Ship second.</td></tr>
+            <tr><td><span class="rank">3</span></td><td><strong>Buyback-to-Credit</strong></td><td>Highest impact and the core liquidity thesis, but it needs the cannibalization experiment.</td><td>Ship third, gated on experiment.</td></tr>
+            <tr><td><span class="rank">4</span></td><td><strong>Trial</strong></td><td>Useful conversion driver on high-price items.</td><td>Ship fourth.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <hr class="rule"/>
+
+    <!-- 05 ECONOMICS -->
+    <section class="section-pad reveal" id="economics">
+      <span class="eyebrow">05 · Unit economics</span>
+      <h2 class="sec-title">Where the money moves, and why it stays inside Riot.</h2>
+      <p class="lead measure">Three of the four mechanics are near-costless upside. Only Buyback needs discipline, and it is bounded because credit is non-cashable and the skin is destroyed, so no real cash ever leaves Riot.</p>
+
+      <div class="econ-grid" style="margin-top:var(--space-8)">
+        <div class="econ-card">
+          <span class="verdict watch">Needs discipline</span>
+          <h3>Buyback-to-Credit</h3>
+          <p>A skin bought at 1775 VP (about ₹1,200) buys back at 25% for roughly 444 VP of credit. Riot's cost is only a discount on a <em>future</em> purchase, so it is accretive as long as incremental future spend covers that discount.</p>
+          <div class="calc">skin = <span class="hl">1775 VP (~₹1,200)</span><br/>credit @25% = <span class="hl">~444 VP</span> (non-cashable)<br/>accretive if: future&nbsp;spend ≥ credit&nbsp;discount</div>
+        </div>
+        <div class="econ-card">
+          <span class="verdict up">Pure upside</span>
+          <h3>Usage-Weighted Store + Wishlist</h3>
+          <p>Both are demand-capture, not new cost. Showing relevant skins and reviving wanted ones lifts conversion on inventory Riot already sells at full price. Incremental revenue equals the conversion lift multiplied by store traffic, and the only cost is engineering.</p>
+          <div class="calc">incremental&nbsp;rev = <span class="hl">conv&nbsp;lift × traffic</span><br/>cost ≈ build&nbsp;only<br/>net = <span class="hl">+ upside</span></div>
+        </div>
+        <div class="econ-card">
+          <span class="verdict free">~Zero cost</span>
+          <h3>Trial</h3>
+          <p>Cost is near-zero, since a trial is just a toggle that expires, tightly capped at about two per month. The upside is trial-to-purchase conversion on high-price items, where the barrier is uncertainty rather than desire.</p>
+          <div class="calc">cost ≈ <span class="hl">0</span> (capped toggle)<br/>upside = trial→buy&nbsp;conversion<br/>on high-price&nbsp;items</div>
+        </div>
+      </div>
+
+      <div class="marginalia"><span class="mk">bottom line</span>Only Buyback moves money, and it is bounded. Credit is non-cashable and the skin is destroyed, so no real cash leaves Riot.</div>
+
+      <div class="econ-summary">
+        <h3>Business case summary</h3>
+        <ul>
+          <li><strong>Buyback</strong> turns dead inventory into recirculating credit and spend confidence.</li>
+          <li><strong>Store, Wishlist, and Trial</strong> lift conversion on skins Riot already sells, at build cost only.</li>
+          <li>Together they reclaim value and demand leaking to a random store and gray-market sales, where Riot earns ₹0 today.</li>
+        </ul>
+      </div>
+    </section>
+
+    <hr class="rule"/>
+
+    <!-- 06 WIREFRAMES -->
+    <section class="section-pad reveal" id="wireframes">
+      <span class="eyebrow">06 · Wireframes</span>
+      <h2 class="sec-title">The core flows.</h2>
+      <p class="lead measure">Low-fidelity mock UI that favors structure and copy over polish. The point is to show how each mechanic reads to a player in the client, from the usage-weighted store to the buyback wallet and the wishlist restock.</p>
+
+      <div class="wf-grid" style="margin-top:var(--space-10)">
+        <!-- WF1 -->
+        <div class="wf">
+          <div class="mock">
+            <div class="mk-topbar"><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-title">VAULT · HOME</span></div>
+            <div class="mk-tabs"><span class="mk-tab on">Store</span><span class="mk-tab">Buyback</span><span class="mk-tab">Trial</span><span class="mk-tab">Wishlist</span></div>
+            <div class="mk-grid">
+              <div class="mk-cell elig"></div><div class="mk-cell"></div><div class="mk-cell elig"></div><div class="mk-cell"></div>
+              <div class="mk-cell"></div><div class="mk-cell elig"></div><div class="mk-cell"></div><div class="mk-cell elig"></div>
+            </div>
+            <div class="mk-spacer"></div>
+            <div class="mk-line md"></div>
+          </div>
+          <div class="wf-caption"><span class="wn">WF-01</span><h3>Vault home</h3><p>Tabs for Store, Buyback, Trial, and Wishlist over an inventory grid, with tags on skins eligible for buyback.</p></div>
+        </div>
+        <!-- WF2 -->
+        <div class="wf">
+          <div class="mock">
+            <div class="mk-topbar"><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-title">DAILY STORE</span></div>
+            <div class="mk-row"><span class="mk-thumb rd"><img src="assets/skins/recon_phantom.png" alt="" /></span><div style="flex:1"><div class="mk-line lg" style="margin-bottom:.4rem"></div><span class="cap">For your Phantom · most used</span></div></div>
+            <div class="mk-row"><span class="mk-thumb rd"><img src="assets/skins/reaver_vandal.png" alt="" /></span><div style="flex:1"><div class="mk-line md" style="margin-bottom:.4rem"></div><span class="cap">For your Vandal · most used</span></div></div>
+            <div class="mk-row"><span class="mk-chip"></span><div style="flex:1"><div class="mk-line md" style="margin-bottom:.4rem"></div><span class="cap">Discovery pick</span></div></div>
+            <div class="mk-row"><span class="mk-chip"></span><div style="flex:1"><div class="mk-line sm"></div><span class="cap">Discovery pick</span></div></div>
+          </div>
+          <div class="wf-caption"><span class="wn">WF-02</span><h3>Usage-weighted store</h3><p>Two of the four daily slots reflect the player's most-used weapons; the other two stay discovery, so exploration survives.</p></div>
+        </div>
+        <!-- WF3 -->
+        <div class="wf">
+          <div class="mock">
+            <div class="mk-topbar"><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-title">BUYBACK FLOW</span></div>
+            <div class="mk-row"><span class="mk-thumb rd"><img src="assets/skins/glitchpop.png" alt="" /></span><div style="flex:1"><div class="mk-line lg" style="margin-bottom:.4rem"></div><div class="mk-line sm"></div></div></div>
+            <div class="mk-offer"><div><div class="mk-line sm" style="margin-bottom:.3rem"></div><span class="cap">Fixed credit offer · 25%</span></div><span class="big">+444 VP</span></div>
+            <div class="mk-warn">⚠ This skin will be permanently removed. Buyback is irreversible.</div>
+            <div class="mk-spacer"></div>
+            <div class="mk-btn">Confirm buyback</div>
+          </div>
+          <div class="wf-caption"><span class="wn">WF-03</span><h3>Buyback flow</h3><p>Select an owned skin, see the fixed credit offer, read the irreversibility warning, confirm, and the credit is added.</p></div>
+        </div>
+        <!-- WF4 -->
+        <div class="wf">
+          <div class="mock">
+            <div class="mk-topbar"><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-title">CREDIT WALLET</span></div>
+            <div class="mk-wallet"><span class="bal">1,286</span><span class="cur">VP CREDIT · non-cashable</span></div>
+            <div class="mk-line md"></div>
+            <div class="mk-warn" style="color:#cfcbc2;border-color:rgba(255,255,255,.12);background:rgba(255,255,255,.04)">Usable in the store only. Cannot be withdrawn or transferred.</div>
+            <div class="mk-line sm"></div>
+            <div class="mk-spacer"></div>
+            <div class="mk-btn ghost">Spend in store →</div>
+          </div>
+          <div class="wf-caption"><span class="wn">WF-04</span><h3>Credit wallet</h3><p>Non-cashable balance with a clear "usable in store only" label and an expiry note.</p></div>
+        </div>
+        <!-- WF5 -->
+        <div class="wf">
+          <div class="mock">
+            <div class="mk-topbar"><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-title">WISHLIST RESTOCK</span></div>
+            <div class="mk-row"><span class="mk-thumb rd"><img src="assets/skins/prime_phantom.png" alt="" /></span><div style="flex:1"><div class="mk-line lg" style="margin-bottom:.4rem"></div><span class="cap">On your wishlist · back now</span></div></div>
+            <div class="mk-warn" style="color:#e6b566;border-color:rgba(230,181,102,.4);background:rgba(230,181,102,.08)">◷ Back for 48 hours only. Then gone again.</div>
+            <div class="mk-spacer"></div>
+            <div class="mk-row" style="gap:.5rem">
+              <div class="mk-btn ghost" style="flex:1">Remind me</div>
+              <div class="mk-btn" style="flex:1">Buy now</div>
+            </div>
+          </div>
+          <div class="wf-caption"><span class="wn">WF-05</span><h3>Wishlist restock</h3><p>A wishlisted skin returns as a surprise with a 48-hour countdown, creating urgency without a random paid draw.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule"/>
+
+    <!-- 07 ROLLOUT -->
+    <section class="section-pad reveal" id="rollout">
+      <span class="eyebrow">07 · Phased rollout</span>
+      <h2 class="sec-title">Ship the safe wins first, and gate the risky one on evidence.</h2>
+      <p class="lead measure">Every phase has a kill-or-scale gate tied to guardrail metrics: direct revenue stays flat or rises, fraud stays at or below baseline.</p>
+
+      <div class="phases">
+        <div class="phase">
+          <div class="phase-rail"><span class="phase-marker">0</span><span class="phase-line"></span></div>
+          <div class="phase-body">
+            <span class="ph-tag">Pre-launch</span>
+            <h3>Research &amp; guardrails</h3>
+            <p>Instrument spend-confidence, fraud, and direct-revenue-per-user baselines. Run a legal review of gambling and real-money rules by region.</p>
+            <span class="gate">◆ Gate: baselines instrumented and legal cleared</span>
+          </div>
+        </div>
+        <div class="phase">
+          <div class="phase-rail"><span class="phase-marker">1</span><span class="phase-line"></span></div>
+          <div class="phase-body">
+            <span class="ph-tag">Lowest risk · no economic transfer</span>
+            <h3>Usage-Weighted Store + Wishlist</h3>
+            <p>Launch usage-weighted slots and wishlist restock in one region. Confirm the surprise-and-countdown mechanic reads clearly, not as a random paid draw.</p>
+            <span class="gate">◆ Gate: conversion ↑ and no gambling-perception flags in legal review</span>
+          </div>
+        </div>
+        <div class="phase">
+          <div class="phase-rail"><span class="phase-marker">2</span><span class="phase-line"></span></div>
+          <div class="phase-body">
+            <span class="ph-tag">Gated on experiment</span>
+            <h3>Buyback-to-Credit</h3>
+            <p>Run an A/B test in one region at a fixed 25% non-cashable rate, excluding limited and exclusive skins initially. The primary read is whether <em>total lifetime spend</em> rises versus the control group.</p>
+            <span class="gate">◆ Gate: total lifetime spend ↑ vs control</span>
+          </div>
+        </div>
+        <div class="phase">
+          <div class="phase-rail"><span class="phase-marker">3</span><span class="phase-line"></span></div>
+          <div class="phase-body">
+            <span class="ph-tag">Conversion driver</span>
+            <h3>Trial</h3>
+            <p>Add capped trial (one match, about two per month) on high-price items and measure the trial-to-purchase lift on those SKUs.</p>
+            <span class="gate">◆ Gate: measurable trial→purchase lift</span>
+          </div>
+        </div>
+        <div class="phase">
+          <div class="phase-rail"><span class="phase-marker">4</span><span class="phase-line"></span></div>
+          <div class="phase-body">
+            <span class="ph-tag">Scale</span>
+            <h3>Global rollout + tuning</h3>
+            <p>Roll winners globally, tune the buyback rate by segment, and expand the eligible catalog carefully.</p>
+            <span class="gate">◆ Gate: guardrails hold at global scale</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule"/>
+
+    <!-- 08 RISKS -->
+    <section class="section-pad reveal" id="risks">
+      <span class="eyebrow">08 · Risks &amp; mitigations</span>
+      <h2 class="sec-title">Six risks, each with a structural answer.</h2>
+
+      <div class="risk-grid" style="margin-top:var(--space-10)">
+        <div class="risk">
+          <div class="r-head"><span class="r-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 20h20L12 2z"/><path d="M12 9v5M12 17.5v.1"/></svg></span><h3>Cannibalization</h3></div>
+          <p class="mit">Buyback could reduce cash sales. <b>Mitigate:</b> a low fixed non-cashable rate, the skin destroyed on buyback, and an A/B gate on total lifetime spend before scaling.</p>
+        </div>
+        <div class="risk">
+          <div class="r-head"><span class="r-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 20h20L12 2z"/><path d="M12 9v5M12 17.5v.1"/></svg></span><h3>Surprise-restock FOMO optics</h3></div>
+          <p class="mit">A surprise return with a 48-hour timer can look like manipulative urgency. <b>Mitigate:</b> the player chose the exact skin and pays a fixed price, so there is no randomized paid draw, unlike a loot box. Keep the timing pressure honest and legally reviewed per region.</p>
+        </div>
+        <div class="risk">
+          <div class="r-head"><span class="r-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 20h20L12 2z"/><path d="M12 9v5M12 17.5v.1"/></svg></span><h3>Buyback &amp; trial abuse</h3></div>
+          <p class="mit"><b>Mitigate:</b> buyback caps per period, tight trial limits (one match, about two per month), and exclusion of limited or exclusive skins from buyback.</p>
+        </div>
+        <div class="risk">
+          <div class="r-head"><span class="r-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 20h20L12 2z"/><path d="M12 9v5M12 17.5v.1"/></svg></span><h3>Discovery narrowing</h3></div>
+          <p class="mit">Usage-weighted slots could trap players on one gun. <b>Mitigate:</b> cap personalization at one or two of four slots and keep the rest on discovery rotation, so players still see new skins.</p>
+        </div>
+        <div class="risk">
+          <div class="r-head"><span class="r-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 20h20L12 2z"/><path d="M12 9v5M12 17.5v.1"/></svg></span><h3>Precedent / slippery slope</h3></div>
+          <p class="mit">Some may fear this leads to open trading. <b>Mitigate:</b> keep it explicitly closed-loop and communicate clearly that P2P trading stays off the table, and why.</p>
+        </div>
+        <div class="risk">
+          <div class="r-head"><span class="r-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 20h20L12 2z"/><path d="M12 9v5M12 17.5v.1"/></svg></span><h3>Support load</h3></div>
+          <p class="mit">Irreversibility confusion on buyback. <b>Mitigate:</b> strong confirmation UX and a short refund window on buyback.</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule"/>
+
+    <!-- 09 OPEN QUESTIONS -->
+    <section class="section-pad reveal" id="open">
+      <span class="eyebrow">09 · Open questions</span>
+      <h2 class="sec-title">What I'd want to resolve next.</h2>
+
+      <ol class="oq-list" style="margin-top:var(--space-8)">
+        <li><p>What wishlist restock interval maximizes conversion without training players to simply wait for the next cycle? Too frequent kills scarcity, too rare kills interest. This is the critical variable to A/B test.</p></li>
+        <li><p>What buyback rate maximizes total lifetime spend without training players to under-buy? This needs an experiment.</p></li>
+        <li><p>How many of the four daily store slots should be usage-weighted before discovery suffers? One, or two?</p></li>
+        <li><p>Where should buyback eligibility stop? Scope starts narrow and expands only if the cannibalization A/B shows total lifetime spend rising, so which tiers open up, and in what order, is a gated decision, not a launch assumption.</p></li>
+        <li><p>Should buyback credit expire, which drives urgency, or persist, which builds goodwill? This trade-off is worth testing.</p></li>
+        <li><p>Given regional legal variance in gambling and consumer-protection law, which markets should launch first?</p></li>
+      </ol>
+
+      <div class="note-card"><span class="mk">what I'd test first</span>Find the wishlist restock interval that lifts conversion without training players to just wait for the next cycle.</div>
+    </section>
+
+  </article>
+</div>
+</div>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <div>
+      <a class="brand" href="#top" aria-label="Home">
+        <svg class="logo" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <path d="M16 3.2 27 9.2v13.6L16 28.8 5 22.8V9.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+          <circle cx="16" cy="16" r="4.4" stroke="currentColor" stroke-width="1.8"/>
+          <path d="M16 11.6v-3M16 23.4v-3M11.6 16h-3M23.4 16h-3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <span><span class="brand-name">Vault</span></span>
+      </a>
+      <p>Skin liquidity without the downsides, a product proposal by Vishal V. A PM portfolio case study.</p>
+      <p class="disclaimer">Fan concept. Not affiliated with or endorsed by Riot Games. Valorant and all related marks, skin renders, and the in-client screenshots are the property of Riot Games, used here for illustrative, non-commercial reference under Riot's fan content policy.</p>
+      <p class="fine">© 2026 Vishal V · PM Case Study</p>
+    </div>
+    <div>
+      <p class="src-label">Sources for "Why Riot says no"</p>
+      <ul class="src">
+        <li><a href="https://www.thespike.gg/valorant/news/valorant-won-t-allow-skin-trading/199" target="_blank" rel="noopener">The Spike: Valorant won't allow skin trading ↗</a></li>
+        <li><a href="https://www.forbes.com/sites/mikestubbs/2020/06/19/riot-games-confirms-skin-trading-will-not-be-coming-to-valorant/" target="_blank" rel="noopener">Forbes: Riot confirms skin trading not coming ↗</a></li>
+        <li><a href="https://esportsinsider.com/cs2-skins-vs-valorant-skins" target="_blank" rel="noopener">Esports Insider: CS2 vs Valorant skins ↗</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script data-pplx-inline-edit>
+(function () {
+  if (window === window.top) return;
+
+  const allowedParentOrigins = ["https://www.perplexity.ai","https://perplexity.ai","https://testing.perplexity.ai","https://staging.perplexity.ai","https://*.preview.i.perplexity.ai","http://localhost:3000","http://127.0.0.1:3000","http://localhost:5173","http://127.0.0.1:5173"];
+  const MAX_FONT_BYTES = 500 * 1024;
+  const MAX_TOTAL_FONT_BYTES = 2 * 1024 * 1024;
+  let scrollForwarding = false;
+  let scrollRaf = 0;
+  let trustedTopOrigin = null;
+
+  // Allow entries like "https://*.preview.i.perplexity.ai" — the wildcard
+  // matches a single DNS label (no dots), so "https://*.foo" cannot stretch
+  // across multiple labels.
+  function matchesAllowedOrigin(origin) {
+    if (!origin) return false;
+    for (const entry of allowedParentOrigins) {
+      if (!entry.includes("*")) {
+        if (entry === origin) return true;
+        continue;
+      }
+      const pattern = new RegExp(
+        "^" +
+          entry.replace(/[.+?^${}()|[\]\\]/g, "\\$&").replace(/\*/g, "[^.]+") +
+          "$",
+      );
+      if (pattern.test(origin)) return true;
+    }
+    return false;
+  }
+
+  // Trust decision: when the sender is same-origin-visible (event.origin is a
+  // real origin like https://www.perplexity.ai) we trust event.origin directly.
+  // When event.origin is "null" (opaque broker srcdoc), we fall back to the
+  // broker's stamped `parentOrigin` to identify the top window. The fallback
+  // is claim-only — we rely on the browser's native `targetOrigin` enforcement
+  // on the response path (see postToTrustedTop) to ensure replies can't be
+  // delivered to anyone but the actual top window of that claimed origin.
+  function getTrustedParentOrigin(event) {
+    const forwardedParentOrigin =
+      typeof event.data.parentOrigin === "string" ? event.data.parentOrigin : null;
+    const parentOrigin = event.origin === "null" ? forwardedParentOrigin : event.origin;
+    return matchesAllowedOrigin(parentOrigin) ? parentOrigin : null;
+  }
+
+  // All responses go to window.top with targetOrigin = the allowlisted origin.
+  // An attacker that iframes us inside their own null-origin broker can claim
+  // any parentOrigin they like, but the browser will drop the reply whenever
+  // the real top's origin doesn't match — so the screenshot never leaves.
+  function postToTrustedTop(message) {
+    if (!trustedTopOrigin) return;
+    try {
+      window.top.postMessage(message, trustedTopOrigin);
+    } catch (_error) {}
+  }
+
+  function inlineAll(original, clone) {
+    if (original.nodeType !== 1 || clone.nodeType !== 1) return;
+
+    try {
+      const computedStyle = getComputedStyle(original);
+      // cssText on a computed style is the serialized declaration in modern
+      // Chromium/Safari — a single read beats enumerating ~400 longhand
+      // properties. Firefox returns "" here, so we fall back on empty.
+      const serialized = computedStyle.cssText;
+      if (serialized) {
+        clone.style.cssText = serialized;
+      } else {
+        const parts = new Array(computedStyle.length);
+        for (let index = 0; index < computedStyle.length; index += 1) {
+          const property = computedStyle[index];
+          parts[index] = `${property}:${computedStyle.getPropertyValue(property)};`;
+        }
+        clone.style.cssText = parts.join("");
+      }
+    } catch (_error) {}
+
+    const originalChildren = original.children;
+    const clonedChildren = clone.children;
+    for (
+      let index = 0;
+      index < originalChildren.length && index < clonedChildren.length;
+      index += 1
+    ) {
+      inlineAll(originalChildren[index], clonedChildren[index]);
+    }
+  }
+
+  function extractFontUrl(srcValue) {
+    const matches = [
+      ...srcValue.matchAll(
+        /url\(["']?([^"')]+)["']?\)(?:\s*format\(["']?([^"')]+)["']?\))?/gi,
+      ),
+    ];
+    if (matches.length === 0) return null;
+    const woff2 = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff2"));
+    if (woff2) return woff2[1];
+    const woff = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff"));
+    if (woff) return woff[1];
+    return matches[0][1];
+  }
+
+  // Cache resolved font URL -> data URI across captures. Fonts on a page
+  // essentially never change, and a batch run emits multiple captures back to
+  // back — without this we'd refetch + re-base64 every time.
+  const fontDataUriCache = new Map();
+  const SRC_DECLARATION_RE = /src\s*:\s*[^;}]+/i;
+
+  async function fetchAsDataUri(url) {
+    if (fontDataUriCache.has(url)) return fontDataUriCache.get(url);
+    let dataUri = null;
+    try {
+      const response = await fetch(url, { mode: "cors", credentials: "omit" });
+      if (response.ok) {
+        const blob = await response.blob();
+        if (blob.size <= MAX_FONT_BYTES) {
+          dataUri = await new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onloadend = () =>
+              resolve(typeof reader.result === "string" ? reader.result : null);
+            reader.onerror = () => resolve(null);
+            reader.readAsDataURL(blob);
+          });
+        }
+      }
+    } catch (_error) {
+      dataUri = null;
+    }
+    fontDataUriCache.set(url, dataUri);
+    return dataUri;
+  }
+
+  function collectFontFaceRuleTexts() {
+    const rules = [];
+    for (const sheet of document.styleSheets) {
+      let cssRules;
+      try {
+        cssRules = sheet.cssRules;
+      } catch (_error) {
+        continue;
+      }
+      if (!cssRules) continue;
+      for (const rule of cssRules) {
+        const cssText = rule.cssText || "";
+        if (cssText.startsWith("@font-face")) rules.push(cssText);
+      }
+    }
+    return rules;
+  }
+
+  async function buildInlinedFontCss() {
+    const ruleTexts = collectFontFaceRuleTexts();
+    if (ruleTexts.length === 0) return null;
+
+    const resolved = ruleTexts.map((cssText) => {
+      if (!SRC_DECLARATION_RE.test(cssText)) return null;
+      const srcMatch = cssText.match(/src\s*:\s*([^;}]+)[;}]/i);
+      if (!srcMatch) return null;
+      const url = extractFontUrl(srcMatch[1]);
+      if (!url) return null;
+      try {
+        return { cssText, url: new URL(url, document.baseURI).href };
+      } catch (_error) {
+        return null;
+      }
+    });
+
+    const dataUris = await Promise.all(
+      resolved.map((entry) => (entry ? fetchAsDataUri(entry.url) : Promise.resolve(null))),
+    );
+
+    const inlined = [];
+    let totalBytes = 0;
+    for (let index = 0; index < resolved.length; index += 1) {
+      const entry = resolved[index];
+      const dataUri = dataUris[index];
+      if (!entry || !dataUri) continue;
+      const approxBytes = dataUri.length * 0.75;
+      if (totalBytes + approxBytes > MAX_TOTAL_FONT_BYTES) break;
+      totalBytes += approxBytes;
+      inlined.push(entry.cssText.replace(SRC_DECLARATION_RE, `src: url("${dataUri}")`));
+    }
+    return inlined.length > 0 ? inlined.join("\n") : null;
+  }
+
+  function stripExternal(clone) {
+    const images = clone.querySelectorAll("img");
+    for (let index = 0; index < images.length; index += 1) {
+      const src = images[index].getAttribute("src");
+      if (src && !src.startsWith("data:")) images[index].removeAttribute("src");
+    }
+
+    const elements = clone.querySelectorAll("*");
+    for (let index = 0; index < elements.length; index += 1) {
+      const style = elements[index].style.cssText;
+      if (style && style.includes("url(")) {
+        elements[index].style.cssText = style.replace(
+          /url\(["']?(?!data:)[^)"']*["']?\)/gi,
+          "none",
+        );
+      }
+    }
+  }
+
+  function emitScroll() {
+    scrollRaf = 0;
+    if (!scrollForwarding) return;
+    postToTrustedTop({
+      type: "INLINE_EDIT_SCROLL",
+      scrollX: window.scrollX,
+      scrollY: window.scrollY,
+    });
+  }
+
+  window.addEventListener(
+    "scroll",
+    function () {
+      if (!scrollForwarding || scrollRaf) return;
+      scrollRaf = requestAnimationFrame(emitScroll);
+    },
+    { passive: true, capture: true },
+  );
+
+  async function handleCaptureRequest(event) {
+    const requestId = event.data.requestId;
+    const scrollX = window.scrollX;
+    const scrollY = window.scrollY;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    function postResult(dataUrl) {
+      postToTrustedTop({
+        type: "INLINE_EDIT_SCREENSHOT_RESULT",
+        requestId,
+        dataUrl,
+        scrollX,
+        scrollY,
+      });
+    }
+
+    try {
+      // Wait for any pending web fonts to resolve so both inline metrics and
+      // the @font-face inlining below see the same loaded faces.
+      if (document.fonts && document.fonts.ready) {
+        try {
+          await document.fonts.ready;
+        } catch (_error) {}
+      }
+
+      const clone = document.documentElement.cloneNode(true);
+      inlineAll(document.documentElement, clone);
+
+      const removedNodes = clone.querySelectorAll("script,link[rel=\"stylesheet\"],style");
+      for (let index = 0; index < removedNodes.length; index += 1) {
+        removedNodes[index].remove();
+      }
+
+      stripExternal(clone);
+
+      // Re-embed web fonts as data-URI @font-face rules so the SVG rasterizer
+      // can resolve them — external font URLs aren't fetched during
+      // foreignObject rendering, which would otherwise force a fallback face
+      // and change text metrics.
+      const inlinedFontCss = await buildInlinedFontCss();
+      if (inlinedFontCss) {
+        const styleEl = document.createElement("style");
+        styleEl.textContent = inlinedFontCss;
+        const head = clone.querySelector("head");
+        if (head) head.appendChild(styleEl);
+        else clone.insertBefore(styleEl, clone.firstChild);
+      }
+
+      const html = new XMLSerializer().serializeToString(clone);
+      const svg =
+        `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">` +
+        '<foreignObject width="100%" height="100%">' +
+        `<div xmlns="http://www.w3.org/1999/xhtml" style="width:${width}px;height:${height}px;overflow:hidden">` +
+        `<div style="position:relative;left:-${scrollX}px;top:-${scrollY}px">` +
+        html +
+        "</div></div></foreignObject></svg>";
+      const svgUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+      const image = new Image();
+      image.onload = function () {
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+        canvas.getContext("2d").drawImage(image, 0, 0);
+        postResult(canvas.toDataURL("image/png"));
+      };
+      image.onerror = function () {
+        postResult(null);
+      };
+      image.src = svgUrl;
+    } catch (_error) {
+      postResult(null);
+    }
+  }
+
+  window.addEventListener("message", function (event) {
+    if (!event.data) return;
+    // Only accept messages from the direct parent frame. Blocks sibling /
+    // unrelated-window postMessage senders that could otherwise reach us.
+    if (event.source !== window.parent) return;
+
+    const trustedParentOrigin = getTrustedParentOrigin(event);
+    if (!trustedParentOrigin) return;
+    trustedTopOrigin = trustedParentOrigin;
+
+    if (event.data.type === "INLINE_EDIT_SCROLL_START") {
+      scrollForwarding = true;
+      emitScroll();
+      return;
+    }
+
+    if (event.data.type === "INLINE_EDIT_SCROLL_STOP") {
+      scrollForwarding = false;
+      if (scrollRaf) cancelAnimationFrame(scrollRaf);
+      scrollRaf = 0;
+      return;
+    }
+
+    if (event.data.type !== "INLINE_EDIT_CAPTURE_REQUEST") return;
+
+    handleCaptureRequest(event);
+  });
+})();
+
+
+</script></body>
+</html>
